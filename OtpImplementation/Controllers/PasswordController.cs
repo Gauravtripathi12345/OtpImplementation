@@ -1,5 +1,6 @@
 ﻿using BLL;
 using Microsoft.AspNetCore.Mvc;
+using OtpImplementation.Requests;
 
 namespace OtpImplementation.Controllers
 {
@@ -60,18 +61,5 @@ namespace OtpImplementation.Controllers
                 return StatusCode(500, $"Failed to update password: {ex.Message}");
             }
         }
-    }
-
-    public class VerifyOTPRequest
-    {
-        public string Email { get; set; }
-        public string OTP { get; set; }
-    }
-
-    public class UpdatePasswordRequest
-    {
-        public string Email { get; set; }
-        public string NewPassword { get; set; }
-
     }
 }

@@ -17,13 +17,11 @@ namespace BLL
 
         public void SendOTP(string email)
         {
-            // Generate a random 6-digit OTP
             int otp = random.Next(100000, 999999);
 
             // Save the OTP and its expiration time in the otpStorage dictionary
-            otpStorage[email] = (otp.ToString(), DateTime.Now.AddMinutes(10)); // Assuming OTP expires in 10 minutes
+            otpStorage[email] = (otp.ToString(), DateTime.Now.AddMinutes(10)); 
 
-            // Send email containing the OTP
             SendEmail(email, $"Your OTP for password reset: {otp}");
         }
 
@@ -32,7 +30,6 @@ namespace BLL
             // Retrieve OTP and its expiration time from the otpStorage dictionary
             if (otpStorage.TryGetValue(email, out var storedOTP))
             {
-                // Check if OTP matches and it's not expired
                 if (storedOTP.otp == otp && storedOTP.expiration > DateTime.Now)
                 {
                     // OTP verified successfully, remove it from otpStorage dictionary
