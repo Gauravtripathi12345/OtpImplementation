@@ -29,11 +29,6 @@ namespace OtpImplementation.Controllers
             }
         }
 
-        public class SendOTPRequest
-        {
-            public string Email { get; set; }
-        }
-
         [HttpPost("verifyotp")]
         public IActionResult VerifyOTP([FromBody] VerifyOTPRequest request)
         {

@@ -5,15 +5,19 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Register QuizDBContext with the dependency injection container
 builder.Services.AddDbContext<QuizDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Register UserService with dependency injection container
+// Register IMemoryCache with the dependency injection container
+builder.Services.AddMemoryCache();
+
+// Register UserService with the dependency injection container
 builder.Services.AddScoped<UserService>();
 
 var app = builder.Build();
